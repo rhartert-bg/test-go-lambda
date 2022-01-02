@@ -15,7 +15,7 @@ func getEnv(envVar string) string {
 
 func FormatMessage(message string) string {
 	sb := strings.Builder{}
-	sb.WriteString("New!\n")
+	sb.WriteString("Hello Ayaka!\n")
 	sb.WriteString(fmt.Sprintf("Message: %s\n", message))
 	sb.WriteString(fmt.Sprintf("Environment: %s\n", getEnv("BG_DEPLOYMENT_ENVIRONMENT")))
 	sb.WriteString(fmt.Sprintf("Git Hash: %s\n", getEnv("BG_BUILD_GIT_HASH")))
