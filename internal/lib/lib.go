@@ -3,15 +3,21 @@ package lib
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
-func getEnv() string {
-	if e := os.Getenv("DEPLOY_ENV"); e != "" {
+func getEnv(envVar string) string {
+	if e := os.Getenv(envVar); e != "" {
 		return e
 	}
 	return "UNKNOWN"
 }
 
 func FormatMessage(message string) string {
-	return fmt.Sprintf("[Env: %s] Message: %s", getEnv(), message)
+	sb := strings.Builder{}
+	sb.WriteString("New!\n")
+	sb.WriteString(fmt.Sprintf("Message: %s\n", message))
+	sb.WriteString(fmt.Sprintf("Environment: %s\n", getEnv("BG_DEPLOYMENT_ENVIRONMENT")))
+	sb.WriteString(fmt.Sprintf("Git Hash: %s\n", getEnv("BG_BUILD_GIT_HASH")))
+	return sb.String()
 }
